@@ -93,3 +93,23 @@ FROM
 JOIN 
     Empleado.Perfilador AS Perfilador
     ON Armador.ArmadorId = Perfilador.ArmadorId;
+
+```
+### Consultas con Subconsultas 🔍
+Realizan operaciones adicionales dentro de las consultas principales.
+
+- **Ejemplo 2**: Contar la cantidad de armadores vinculados a un perfilador.
+```sql
+Copiar código
+SELECT 
+    Perfilador.PerfiladorId,
+    (SELECT COUNT(*) 
+     FROM Empleado.Armador 
+     WHERE Empleado.Armador.ArmadorId = Perfilador.ArmadorId) AS CantidadDeArmadores
+FROM 
+    Empleado.Perfilador AS Perfilador;
+```
+### Optimizaciones Posibles ⚡
+- **Reemplazar subconsultas por joins:** Mejora el rendimiento al evitar consultas redundantes.
+- **Agregar filtros:** Usar cláusulas WHERE para limitar los resultados según criterios específicos.
+- **Uso de alias consistentes:** Facilita la lectura y mantenimiento del código SQL.
